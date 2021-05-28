@@ -163,22 +163,25 @@ class _AnalysisPopupState extends State<AnalysisPopup> {
       margin: EdgeInsets.fromLTRB(0.0, 150.0, 0.0, 180.0),
 
       child: AlertDialog(
-        title: Text("Analysing cloud"),
+        title: Text("Analysing cloud", style: GoogleFonts.quicksand(fontWeight: FontWeight.bold)),
         content: Column (
           children: [
             Padding(
               padding: const EdgeInsets.all(40.0),
-              child: Text("Please wait..."),
+              child: Text("Please wait...", style: GoogleFonts.quicksand()),
             ),
             Container(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(color: Colors.blueGrey),
               margin: EdgeInsets.all(11.0),
             ),
           ],
         ),
         
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, "Cancel"), child: Text("Cancel"))
+          TextButton(
+              onPressed: () => Navigator.pop(context, "Cancel"),
+              child: Text("Cancel", style: GoogleFonts.quicksand(color: Colors.blueGrey, fontWeight: FontWeight.w800))
+          )
         ],
       ),
     );
