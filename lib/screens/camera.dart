@@ -125,11 +125,6 @@ class _CheckmarkButtonState extends State<CheckmarkButton> {
             print(image.path);
 
             _showAlert();
-            
-            //Navigator.pushReplacement(
-                //context,
-                //MaterialPageRoute(builder: (context) => CloudInfoScreen(image.path))
-            //);
           }
 
           catch (e) {
