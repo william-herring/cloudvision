@@ -24,6 +24,7 @@ class CloudvisionApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Cloudvision",
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
 
       theme: ThemeData(

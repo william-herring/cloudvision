@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'dart:core';
+import 'dart:io';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tflite/tflite.dart';
 import 'cloud-info.dart';
 import 'package:sensors/sensors.dart';
 
@@ -124,7 +126,7 @@ class _CheckmarkButtonState extends State<CheckmarkButton> {
             final image = await controller.takePicture();
             print(image.path);
 
-            _showAlert();
+            _showAlert(image);
           }
 
           catch (e) {
@@ -137,22 +139,56 @@ class _CheckmarkButtonState extends State<CheckmarkButton> {
         });
   }
 
-  Future<void> _showAlert() async {
+  Future<void> _showAlert(img) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
-        return AnalysisPopup();
+        return AnalysisPopup(img.path);
       },
     );
   }
 }
 
 class AnalysisPopup extends StatefulWidget {
-  _AnalysisPopupState createState() => _AnalysisPopupState();
+  String path;
+
+  AnalysisPopup(this.path);
+
+  _AnalysisPopupState createState() => _AnalysisPopupState(path);
 }
 
 class _AnalysisPopupState extends State<AnalysisPopup> {
+  String imagePath;
+
+  _AnalysisPopupState(this.imagePath);
+
+  File image;
+  bool isLoading = true;
+  List output;
+
+  void initState() {
+    super.initState();
+    loadModel().then((value) {
+      setState(() {
+        isLoading = false;
+      });
+    });
+
+    image = File(imagePath);
+  }
+
+  loadModel () async {
+    await Tflite.loadModel(
+      model: 'assets/model_unquant.tflite',
+      labels: 'assets/labels.txt',
+    );
+  }
+
+  void classifyImage() {
+    
+  }
+
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.fromLTRB(0.0, 150.0, 0.0, 180.0),
@@ -166,7 +202,7 @@ class _AnalysisPopupState extends State<AnalysisPopup> {
               child: Text("Please wait...", style: GoogleFonts.quicksand()),
             ),
             Container(
-              child: CircularProgressIndicator(color: Colors.blueGrey),
+              child: isLoading ? CircularProgressIndicator(color: Colors.blueGrey) : Text("Finished!"),
               margin: EdgeInsets.all(11.0),
             ),
           ],
