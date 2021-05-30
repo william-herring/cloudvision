@@ -6,7 +6,6 @@ import 'dart:io';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tflite/tflite.dart';
 import 'cloud-info.dart';
-import 'package:sensors/sensors.dart';
 
 class CameraScreen extends StatefulWidget {
   final CameraDescription camera;
@@ -186,7 +185,7 @@ class _AnalysisPopupState extends State<AnalysisPopup> {
   }
 
   void classifyImage() {
-    
+
   }
 
   Widget build(BuildContext context) {
