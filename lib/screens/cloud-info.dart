@@ -2,32 +2,19 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 class CloudInfoScreen extends StatefulWidget {
-  String imagePath;
+  var modelResults;
+  CloudInfoScreen(this.modelResults);
 
-  CloudInfoScreen(this.imagePath);
-
-  _CloudInfoScreenState createState() => _CloudInfoScreenState(imagePath);
+  @override
+  _CloudInfoScreenState createState() => _CloudInfoScreenState(modelResults);
 }
 
 class _CloudInfoScreenState extends State<CloudInfoScreen> {
-  String _imagePath;
+  var _modelResults;
+  _CloudInfoScreenState(this._modelResults);
 
-  _CloudInfoScreenState(this._imagePath);
-
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar (
-        actions: [Center(child: Image.file(File(_imagePath)))],
-        title: Text("Cloud Info"),
-      ),
-
-      body: Column(
-        children: [
-           Center(
-            child: Text("Please wait"),
-          ),
-        ]
-      )
-    );
+    return Container();
   }
 }

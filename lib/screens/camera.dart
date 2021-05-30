@@ -1,6 +1,7 @@
 ﻿import 'package:cloudvision/screens/cloud-info.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:flutter/services.dart';
 import 'dart:core';
 import 'dart:io';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,6 +26,8 @@ class _CameraScreenState extends State<CameraScreen> {
 
   void initState() {
     super.initState();
+
+    _checkMarkTicked = false;
 
     _controller = CameraController(
       widget.camera,
@@ -169,9 +172,7 @@ class _AnalysisPopupState extends State<AnalysisPopup> {
   void initState() {
     super.initState();
     loadModel().then((value) {
-      setState(() {
-        isLoading = false;
-      });
+      classifyImage();
     });
 
     image = File(imagePath);
@@ -184,8 +185,20 @@ class _AnalysisPopupState extends State<AnalysisPopup> {
     );
   }
 
-  void classifyImage() {
+  void classifyImage() async {
+    setState(() {
+      isLoading = true;
+    });
 
+    var output = await Tflite.runModelOnImage(
+        path: imagePath,
+    );
+
+    print(output);
+
+    setState(() {
+      isLoading = false;
+    });
   }
 
   Widget build(BuildContext context) {
@@ -198,10 +211,13 @@ class _AnalysisPopupState extends State<AnalysisPopup> {
           children: [
             Padding(
               padding: const EdgeInsets.all(40.0),
-              child: Text("Please wait...", style: GoogleFonts.quicksand()),
+              child: isLoading ? Text("Please wait...", style: GoogleFonts.quicksand()) : Text("Finished!", style: GoogleFonts.quicksand()),
             ),
             Container(
-              child: isLoading ? CircularProgressIndicator(color: Colors.blueGrey) : Text("Finished!"),
+              child: isLoading ? CircularProgressIndicator(color: Colors.blueGrey) : OutlinedButton(
+                  onPressed: () {},
+                  child: Text("See the results", style: GoogleFonts.quicksand(fontWeight: FontWeight.bold, color: Colors.blueAccent)),
+              ),
               margin: EdgeInsets.all(11.0),
             ),
           ],
