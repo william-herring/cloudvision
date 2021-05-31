@@ -167,7 +167,7 @@ class _AnalysisPopupState extends State<AnalysisPopup> {
 
   File image;
   bool isLoading = true;
-  List output;
+  List outputs;
 
   void initState() {
     super.initState();
@@ -192,12 +192,14 @@ class _AnalysisPopupState extends State<AnalysisPopup> {
 
     var output = await Tflite.runModelOnImage(
         path: imagePath,
+        numResults: 2,
     );
 
     print(output);
 
     setState(() {
       isLoading = false;
+      outputs = output;
     });
   }
 
@@ -215,7 +217,12 @@ class _AnalysisPopupState extends State<AnalysisPopup> {
             ),
             Container(
               child: isLoading ? CircularProgressIndicator(color: Colors.blueGrey) : OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(pageBuilder: (context, animation1, animation2) => CloudInfoScreen(outputs))
+                    );
+                  },
                   child: Text("See the results", style: GoogleFonts.quicksand(fontWeight: FontWeight.bold, color: Colors.blueAccent)),
               ),
               margin: EdgeInsets.all(11.0),
