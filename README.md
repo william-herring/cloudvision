@@ -1,16 +1,23 @@
 # cloudvision
 
-An application made for the STS (Science Talent Search) for analysing cloud formations and patterns.
+This app was developed for the Science Talent Search Victoria 2021.
 
-## Getting Started
+Cloudvision is an app designed for learning, collecting, scanning and analysing clouds. Features include:
 
-This project is a starting point for a Flutter application.
+- A cloud collection gallery for ease of access to saved clouds.
+- A cloud scanner that makes use of the device's camera and machine learning to output the cloud type.
+- A collection of learning resources about clouds and the creation of the application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+**Technical info:**
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Cloudvision was built using the Flutter framework. All front-end code is written in Dart. 
+Cloudvision also makes use of TensorFlow machine learning and the Teachable Machine by Google.
+A huge thanks to Havard Dataverse's CCSN Database of cloud images that were used for training the machine
+(https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/CADDPD).
+
+**Specs:**
+
+- Built on an iMac (27-inch, Late 2012)
+- Developed in IntelliJ IDEA CE (IDE) / Xcode (Deployment to iOS)
+- Application tested on and deployed on iPhone Xs.
