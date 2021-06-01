@@ -213,10 +213,12 @@ class _AnalysisPopupState extends State<AnalysisPopup> {
           children: [
             Padding(
               padding: const EdgeInsets.all(40.0),
-              child: isLoading ? Text("Please wait...", style: GoogleFonts.quicksand()) : Text("Finished!", style: GoogleFonts.quicksand()),
+              child: isLoading ? Text("Please wait...", style: GoogleFonts.quicksand()) :
+              (num.parse("${outputs[0]["confidence"]}") * 100) < 50 ? Text("Sorry, we couldn't match that to a cloud.", textAlign: TextAlign.center,) :
+              Text("Finished!", style: GoogleFonts.quicksand()),
             ),
             Container(
-              child: isLoading ? CircularProgressIndicator(color: Colors.blueGrey) : OutlinedButton(
+              child: isLoading ? CircularProgressIndicator(color: Colors.blueGrey) : (num.parse("${outputs[0]["confidence"]}") * 100) > 50 ? OutlinedButton(
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
@@ -224,7 +226,7 @@ class _AnalysisPopupState extends State<AnalysisPopup> {
                     );
                   },
                   child: Text("See the results", style: GoogleFonts.quicksand(fontWeight: FontWeight.bold, color: Colors.blueAccent)),
-              ),
+              ) : Container(),
               margin: EdgeInsets.all(11.0),
             ),
           ],
@@ -232,7 +234,7 @@ class _AnalysisPopupState extends State<AnalysisPopup> {
         
         actions: [
           TextButton(
-              onPressed: () => Navigator.pop(context, "Cancel"),
+              onPressed: () => Navigator.pop(context),
               child: Text("Cancel", style: GoogleFonts.quicksand(color: Colors.blueGrey, fontWeight: FontWeight.w800))
           )
         ],

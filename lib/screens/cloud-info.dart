@@ -13,13 +13,20 @@ class CloudInfoScreen extends StatefulWidget {
 class _CloudInfoScreenState extends State<CloudInfoScreen> {
   var _modelResults;
   var _confidence;
+  var _name;
   _CloudInfoScreenState(this._modelResults);
 
   void initState() {
     super.initState();
 
-    print("${_modelResults[0]["confidence"]}");
+    if (_modelResults == null) {
+      print("Error: Model output is null. Returning with uninitialized state");
+      return;
+    }
 
+
+
+    _name = "${_modelResults[0]["label"]}".replaceRange(0, 1, "");
     _confidence = (num.parse("${_modelResults[0]["confidence"]}") * 100).toStringAsFixed(1);
 
     print(_modelResults);
@@ -29,12 +36,12 @@ class _CloudInfoScreenState extends State<CloudInfoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_modelResults != null ? "${_modelResults[0]["label"]}" : "Model output is null"),
+        title: Text(_name),
       ),
 
       body:
         Center(
-            child: Text(_modelResults != null ? _confidence + "% match" : "Model output is null"),
+            child: Text(_confidence + "% match"),
         )
     );
   }
