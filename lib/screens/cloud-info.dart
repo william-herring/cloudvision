@@ -26,7 +26,7 @@ class _CloudInfoScreenState extends State<CloudInfoScreen> {
 
 
 
-    _name = "${_modelResults[0]["label"]}".replaceRange(0, 1, "");
+    _name = "${_modelResults[0]["label"]}".replaceRange(0, 2, "");
     _confidence = (num.parse("${_modelResults[0]["confidence"]}") * 100).toStringAsFixed(1);
 
     print(_modelResults);
@@ -39,10 +39,12 @@ class _CloudInfoScreenState extends State<CloudInfoScreen> {
         title: Text(_name),
       ),
 
-      body:
-        Center(
-            child: Text(_confidence + "% match"),
-        )
+      body: Column(
+        children: [
+          Text("Your cloud was identified as a " + _name),
+          Text(_confidence + "% match"),
+        ],
+      )
     );
   }
 }
