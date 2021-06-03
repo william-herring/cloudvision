@@ -46,3 +46,27 @@ class _CloudInfoScreenState extends State<CloudInfoScreen> {
     );
   }
 }
+
+class CloudData {
+  String speciesName;
+  var predictionMessage;
+
+  CloudData(this.speciesName);
+
+  String _getPredictions() {
+    var predictions = {
+      'Cirrus' : "A condition change will be felt soon.",
+      'Cirrostratus' : "Rain will fall within 24 hours.",
+      'Cirrocumulus' : "Weather conditions will remain fair, but cool",
+      'Altocumulus' : "Weather conditions will remain fair.",
+      'Altostratus' : "Continuous rain will arrive soon. ",
+      'Nimbostratus' : "Gloomy conditions with continuous rain can be expected.",
+      'Cumulus' : "Weather conditions will remain fair.",
+      'Stratus' : "Weather conditions will be fair, but gloomy.",
+      'Cumulonimbus' : "Heavy rain and hail is likely.",
+      'Stratocumulus' : "Weather conditions will remain fair for some time, but a storm may be coming.",
+    };
+
+    return predictions[speciesName];
+  }
+}
