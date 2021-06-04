@@ -222,7 +222,7 @@ class _AnalysisPopupState extends State<AnalysisPopup> {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      PageRouteBuilder(pageBuilder: (context, animation1, animation2) => CloudInfoScreen(outputs))
+                      PageRouteBuilder(pageBuilder: (context, animation1, animation2) => CloudInfoScreen(outputs, image))
                     );
                   },
                   child: Text("See the results", style: GoogleFonts.quicksand(fontWeight: FontWeight.bold, color: Colors.blueAccent)),

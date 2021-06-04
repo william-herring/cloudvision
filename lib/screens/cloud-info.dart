@@ -1,20 +1,23 @@
 import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CloudInfoScreen extends StatefulWidget {
   var modelResults;
-  CloudInfoScreen(this.modelResults);
+  File image;
+  CloudInfoScreen(this.modelResults, this.image);
 
   @override
-  _CloudInfoScreenState createState() => _CloudInfoScreenState(modelResults);
+  _CloudInfoScreenState createState() => _CloudInfoScreenState(modelResults, image);
 }
 
 class _CloudInfoScreenState extends State<CloudInfoScreen> {
   var _modelResults;
   var _confidence;
+  File _image;
   var _name;
-  _CloudInfoScreenState(this._modelResults);
+  _CloudInfoScreenState(this._modelResults, this._image);
 
   void initState() {
     super.initState();
@@ -35,17 +38,42 @@ class _CloudInfoScreenState extends State<CloudInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffe0e0e0),
+
       appBar: AppBar(
         title: Text(_name),
       ),
 
-      body: Column(
-        children: [
-          Text("Your cloud was identified as a " + _name),
-          Text(_confidence + "% match"),
-        ],
+      body: Center(
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.fromLTRB(0.0, 290, 8.0, 0.0),
+
+              child: Text("Your cloud was identified as " + getCorrectPronoun(_name) + " " + _name, style:
+                GoogleFonts.quicksand(fontWeight: FontWeight.bold, fontSize: 20.0),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Container(
+                padding: EdgeInsets.fromLTRB(0.0, 20.0, 8.0, 0.0),
+                child: Text(_confidence + "% match", style:
+                  GoogleFonts.quicksand(fontWeight: FontWeight.normal, fontSize: 20.0),
+                  textAlign: TextAlign.center,
+                )
+            ),
+          ],
+        ),
       )
     );
+  }
+
+  String getCorrectPronoun(String noun) {
+    var vowels = ['A', 'E', 'O', 'I', 'U'];
+
+    if (vowels.contains(noun[0])) {
+      return 'an';
+    } else return 'a';
   }
 }
 
