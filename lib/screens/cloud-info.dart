@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class CloudInfoScreen extends StatefulWidget {
 class _CloudInfoScreenState extends State<CloudInfoScreen> {
   var _modelResults;
   var _confidence;
+  CloudData _cloudData;
   File _image;
   var _name;
   _CloudInfoScreenState(this._modelResults, this._image);
@@ -27,8 +29,7 @@ class _CloudInfoScreenState extends State<CloudInfoScreen> {
       return;
     }
 
-
-
+    _cloudData = new CloudData(_name);
     _name = "${_modelResults[0]["label"]}".replaceRange(0, 2, "");
     _confidence = (num.parse("${_modelResults[0]["confidence"]}") * 100).toStringAsFixed(1);
 
@@ -38,7 +39,7 @@ class _CloudInfoScreenState extends State<CloudInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffe0e0e0),
+      backgroundColor: Color(0xffffffff),
 
       appBar: AppBar(
         title: Text(_name),
@@ -48,19 +49,28 @@ class _CloudInfoScreenState extends State<CloudInfoScreen> {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.fromLTRB(0.0, 290, 8.0, 0.0),
+              padding: EdgeInsets.fromLTRB(0.0, 230, 8.0, 0.0),
 
               child: Text("Your cloud was identified as " + getCorrectPronoun(_name) + " " + _name, style:
-                GoogleFonts.quicksand(fontWeight: FontWeight.bold, fontSize: 20.0),
+                GoogleFonts.quicksand(fontWeight: FontWeight.bold, fontSize: 20.0, color: Color(
+                    0xff6491b5)),
                 textAlign: TextAlign.center,
               ),
             ),
             Container(
                 padding: EdgeInsets.fromLTRB(0.0, 20.0, 8.0, 0.0),
                 child: Text(_confidence + "% match", style:
-                  GoogleFonts.quicksand(fontWeight: FontWeight.normal, fontSize: 20.0),
+                  GoogleFonts.quicksand(fontWeight: FontWeight.normal, fontSize: 20.0, color: Color(0xff6491b5)),
                   textAlign: TextAlign.center,
                 )
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: simpleButton("More about this cloud"),
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: simpleButton("Add to collection"),
             ),
           ],
         ),
@@ -74,6 +84,26 @@ class _CloudInfoScreenState extends State<CloudInfoScreen> {
     if (vowels.contains(noun[0])) {
       return 'an';
     } else return 'a';
+  }
+
+  Widget simpleButton(String text) {
+    return Container(
+      margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.all(Radius.circular(15.0)),
+        color: Color(0xff6491b5),
+      ),
+
+      child: Container(
+          child: Text(text, textAlign: TextAlign.center, style:
+          GoogleFonts.quicksand(fontWeight: FontWeight.normal, fontSize: 15.0, color: Color(
+              0xffe3e3e3))
+          )
+      ),
+      padding: EdgeInsets.fromLTRB(70.0, 15.0, 70.0, 15.0),
+    );
   }
 }
 
