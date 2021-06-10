@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
+import 'package:cloudvision/main.dart';
+import 'package:cloudvision/screens/collections.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -29,7 +31,7 @@ class _CloudInfoScreenState extends State<CloudInfoScreen> {
       return;
     }
 
-    _cloudData = new CloudData(_name);
+    _cloudData = new CloudData(_name, Image.file(_image), (num.parse("${_modelResults[0]["confidence"]}") * 100).toStringAsFixed(1));
     _name = "${_modelResults[0]["label"]}".replaceRange(0, 2, "");
     _confidence = (num.parse("${_modelResults[0]["confidence"]}") * 100).toStringAsFixed(1);
 
@@ -69,7 +71,17 @@ class _CloudInfoScreenState extends State<CloudInfoScreen> {
               child: simpleButton("More about this cloud"),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                _cloudData.savaData();
+
+                Navigator.pushReplacement(
+                  context,
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation1, animation2) => CollectionScreen(),
+                    transitionDuration: Duration(seconds: 0),
+                  ),
+                );
+              },
               child: simpleButton("Add to collection"),
             ),
           ],
@@ -109,9 +121,11 @@ class _CloudInfoScreenState extends State<CloudInfoScreen> {
 
 class CloudData {
   String speciesName;
+  Image image;
+  var accuracy;
   var predictionMessage;
 
-  CloudData(this.speciesName);
+  CloudData(this.speciesName, this.image, this.accuracy);
 
   String _getPredictions() {
     var predictions = {
@@ -128,5 +142,9 @@ class CloudData {
     };
 
     return predictions[speciesName];
+  }
+
+  void savaData() {
+    savedCloudData.add(this);
   }
 }

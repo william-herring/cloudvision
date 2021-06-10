@@ -66,10 +66,14 @@ class CollectionScreenContent extends StatefulWidget {
 }
 
 class _CollectionScreenContentState extends State<CollectionScreenContent> {
+  var _collectedCloudData = savedCloudData;
+
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
+        body: savedCloudData.length < 0 ? Center(
           child: titleText(Color(0xFF212121), "Nothing here yet."),
+        ) : Center(
+          child: titleText(Color(0xFF212121), "Something here!"),
         )
     );
   }

@@ -6,6 +6,7 @@ import 'package:camera/camera.dart';
 import 'screens/cloud-info.dart';
 
 CameraDescription cam;
+var savedCloudData = [];
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
