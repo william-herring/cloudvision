@@ -31,11 +31,10 @@ class _CloudInfoScreenState extends State<CloudInfoScreen> {
       return;
     }
 
-    _cloudData = new CloudData(_name, Image.file(_image), (num.parse("${_modelResults[0]["confidence"]}") * 100).toStringAsFixed(1));
     _name = "${_modelResults[0]["label"]}".replaceRange(0, 2, "");
     _confidence = (num.parse("${_modelResults[0]["confidence"]}") * 100).toStringAsFixed(1);
 
-    print(_modelResults);
+    _cloudData = new CloudData(_name, _image, (num.parse("${_modelResults[0]["confidence"]}") * 100).toStringAsFixed(1));
   }
 
   @override
@@ -72,7 +71,8 @@ class _CloudInfoScreenState extends State<CloudInfoScreen> {
             ),
             GestureDetector(
               onTap: () {
-                _cloudData.savaData();
+                //savedCloudData.add(_cloudData.getDataMap());
+                _cloudData.saveData();
 
                 Navigator.pushReplacement(
                   context,
@@ -121,13 +121,13 @@ class _CloudInfoScreenState extends State<CloudInfoScreen> {
 
 class CloudData {
   String speciesName;
-  Image image;
+  File image;
   var accuracy;
   var predictionMessage;
 
   CloudData(this.speciesName, this.image, this.accuracy);
 
-  String _getPredictions() {
+  String getPredictions() {
     var predictions = {
       'Cirrus' : "A condition change will be felt soon.",
       'Cirrostratus' : "Rain will fall within 24 hours.",
@@ -144,7 +144,26 @@ class CloudData {
     return predictions[speciesName];
   }
 
-  void savaData() {
-    savedCloudData.add(this);
+  String getTitle() {
+    return speciesName;
+  }
+
+  String getAccuracy() {
+    return accuracy;
+  }
+
+  Map getDataMap() {
+    var data = {
+      'img' : image.path,
+      'title' : speciesName,
+      'accuracy' : getAccuracy(),
+      'prediction' : getPredictions(),
+    };
+
+    return data;
+  }
+
+  void saveData() {
+    savedCloudData.add(getDataMap());
   }
 }

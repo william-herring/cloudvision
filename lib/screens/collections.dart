@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloudvision/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -70,10 +72,10 @@ class _CollectionScreenContentState extends State<CollectionScreenContent> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        body: savedCloudData.length < 0 ? Center(
+        body: savedCloudData.length <= 0 ? Center(
           child: titleText(Color(0xFF212121), "Nothing here yet."),
         ) : Center(
-          child: titleText(Color(0xFF212121), "Something here!"),
+          child: buildContent(),
         )
     );
   }
@@ -88,6 +90,34 @@ class _CollectionScreenContentState extends State<CollectionScreenContent> {
         fontWeight: FontWeight.bold,
       )),
     );
+  }
+
+  Widget buildContent() {
+    return ListView(
+      children: buildCloudTiles(),
+    );
+  }
+
+  List<Widget> buildCloudTiles() {
+    List<Widget> list = [];
+
+    for (var i = 0; i < savedCloudData.length; i++) {
+      String title = savedCloudData[i]["title"];
+      String accuracy = savedCloudData[i]["accuracy"];
+      Image img = Image.file(File(savedCloudData[i]["img"]));
+
+      ListTile tile = ListTile(
+        contentPadding: EdgeInsets.all(12.5),
+        leading: img,
+        subtitle: Text("Photo taken by you. Accuracy: " + accuracy + "%"),
+        title: titleText(Color(0xFF212121), title)
+      );
+
+      list.add(tile);
+      list.add(Divider(thickness: 2.0));
+    }
+
+    return list;
   }
 
   Widget bannerBox(Color color, String text, bool isTop) {
