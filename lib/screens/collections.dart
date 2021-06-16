@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:camera/camera.dart';
+import 'cloud-analysis.dart';
 import 'home.dart';
 
 class CollectionScreen extends StatelessWidget {
@@ -110,7 +111,10 @@ class _CollectionScreenContentState extends State<CollectionScreenContent> {
         contentPadding: EdgeInsets.all(12.5),
         leading: img,
         subtitle: Text("Photo taken by you. Accuracy: " + accuracy + "%"),
-        title: titleText(Color(0xFF212121), title)
+        title: titleText(Color(0xFF212121), title),
+        onTap: () {
+
+        },
       );
 
       list.add(tile);

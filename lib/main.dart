@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'screens/home.dart';
 import 'screens/collections.dart';
 import 'package:camera/camera.dart';
-import 'screens/cloud-info.dart';
+import 'screens/cloud-analysis.dart';
 
 CameraDescription cam;
 var savedCloudData = [];

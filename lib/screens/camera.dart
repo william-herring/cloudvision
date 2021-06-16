@@ -1,4 +1,4 @@
-﻿import 'package:cloudvision/screens/cloud-info.dart';
+﻿import 'package:cloudvision/screens/cloud-analysis.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/services.dart';
@@ -6,7 +6,7 @@ import 'dart:core';
 import 'dart:io';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tflite/tflite.dart';
-import 'cloud-info.dart';
+import 'cloud-analysis.dart';
 
 class CameraScreen extends StatefulWidget {
   final CameraDescription camera;
@@ -195,8 +195,6 @@ class _AnalysisPopupState extends State<AnalysisPopup> {
         numResults: 2,
     );
 
-    print(output);
-
     setState(() {
       isLoading = false;
       outputs = output;
@@ -222,7 +220,7 @@ class _AnalysisPopupState extends State<AnalysisPopup> {
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      PageRouteBuilder(pageBuilder: (context, animation1, animation2) => CloudInfoScreen(outputs, image))
+                      PageRouteBuilder(pageBuilder: (context, animation1, animation2) => CloudAnalysisScreen(outputs, image))
                     );
                   },
                   child: Text("See the results", style: GoogleFonts.quicksand(fontWeight: FontWeight.bold, color: Colors.blueAccent)),
