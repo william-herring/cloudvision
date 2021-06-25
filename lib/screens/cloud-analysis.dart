@@ -130,7 +130,7 @@ class CloudData {
     var predictions = {
       'Cirrus' : "A condition change will be felt soon.",
       'Cirrostratus' : "Rain will fall within 24 hours.",
-      'Cirrocumulus' : "Weather conditions will remain fair, but cool",
+      'Cirrocumulus' : "Weather conditions will remain fair, but cool.",
       'Altocumulus' : "Weather conditions will remain fair.",
       'Altostratus' : "Continuous rain will arrive soon. ",
       'Nimbostratus' : "Gloomy conditions with continuous rain can be expected.",
@@ -141,6 +141,23 @@ class CloudData {
     };
 
     return predictions[speciesName];
+  }
+
+  String getFacts() {
+    var facts = {
+      'Cirrus' : "These clouds do not usually appear in a large solid shape, instead they appear in feather-like clouds. Cirrus clouds are mostly made up of ice crystals.",
+      'Cirrostratus' : "These clouds blanket the sky in a thin layer of white. These clouds are most often seen during the winter.",
+      'Cirrocumulus' : "These clouds are sheet-looking, thin clouds tht have a fabric-like pattern. They look like they are full of small ripples.",
+      'Altocumulus' : "These clouds have many layers that cover large parts of the sky in grey or white fluffy ripples. They are made of liquid water but don't usually produce rain.",
+      'Altostratus' : "These clouds are grey clouds that cover the sky. They are made up of ice crystals and water droplets. Watch out, these usually mean rain is coming!",
+      'Nimbostratus' : "These clouds are grey-white coloured clouds that cover the sky in a thick enough layer to block out the sun from view.",
+      'Cumulus' : "These clouds look lie fluffy, white balls floating in the sky. They come in varying sizes and shapes, making them some of the coolest looking clouds.",
+      'Stratus' : "These clouds look like thin, white sheets that colver the entire sky. These clouds are very low and you may notice them when driving through mountains.",
+      'Cumulonimbus' : "These clouds look like a large grey pile of clouds. They are often formed in hot, moist conditions.",
+      'Stratocumulus' : "These clouds are grey, patchy looking clouds that have a honeycomb-like appearance.",
+    };
+
+    return facts[speciesName];
   }
 
   String getTitle() {
@@ -157,6 +174,7 @@ class CloudData {
       'title' : speciesName,
       'accuracy' : getAccuracy(),
       'prediction' : getPredictions(),
+      'fact' : getFacts(),
     };
 
     return data;

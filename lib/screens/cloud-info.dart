@@ -32,7 +32,24 @@ class _CloudInfoScreenState extends State<CloudInfoScreen> {
             child: Image.file(File(_cloudData['img'])),
           ),
           Container(
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(15.0),
+                    child: titleText(Colors.black, _cloudData["title"])
+                ),
 
+                Container(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text(_cloudData["fact"], textAlign: TextAlign.center,)
+                ),
+
+                Container(
+                  padding: EdgeInsets.all(15.0),
+                  child: Text("Predictions: " + _cloudData["prediction"],)
+                ),
+              ],
+            )
           )
         ],
       )
