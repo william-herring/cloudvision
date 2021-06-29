@@ -181,7 +181,7 @@ class _ListContentState extends State<ListContent> {
           print(savedCloudData[i]);
 
           Navigator.push(context,
-            PageRouteBuilder(pageBuilder: (context, animation1, animation2) => CloudInfoScreen(savedCloudData[i]))
+            PageRouteBuilder(pageBuilder: (context, animation1, animation2) => CloudInfoScreen(savedCloudData[i], CollectionScreen()))
           );
         },
       );

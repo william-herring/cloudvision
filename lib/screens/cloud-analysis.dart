@@ -6,6 +6,8 @@ import 'package:cloudvision/screens/collections.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'cloud-info.dart';
+
 class CloudAnalysisScreen extends StatefulWidget {
   var modelResults;
   File image;
@@ -66,7 +68,15 @@ class _CloudAnalysisScreenState extends State<CloudAnalysisScreen> {
                 )
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation1, animation2) => CloudInfoScreen(_cloudData.getDataMap(), CloudAnalysisScreen(_modelResults, _image)),
+                      transitionDuration: Duration(seconds: 0),
+                    )
+                );
+              },
               child: simpleButton("More about this cloud"),
             ),
             GestureDetector(

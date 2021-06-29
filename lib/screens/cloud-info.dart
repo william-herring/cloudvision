@@ -5,21 +5,29 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CloudInfoScreen extends StatefulWidget {
   var cloudData;
+  var originRoute;
 
-  CloudInfoScreen(this.cloudData);
+  CloudInfoScreen(this.cloudData, this.originRoute);
 
-  _CloudInfoScreenState createState() => _CloudInfoScreenState(cloudData);
+  _CloudInfoScreenState createState() => _CloudInfoScreenState(cloudData, originRoute);
 }
 
 class _CloudInfoScreenState extends State<CloudInfoScreen> {
   var _cloudData;
+  var _originRoute;
 
-  _CloudInfoScreenState(this._cloudData);
+  _CloudInfoScreenState(this._cloudData, this._originRoute);
 
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: simpleButton(
-        "Back"
+      floatingActionButton: GestureDetector(
+        child: simpleButton(
+          "Back"
+        ),
+
+        onTap: () {
+          Navigator.pushReplacement(context, PageRouteBuilder(pageBuilder: (context, animation1, animation2) => _originRoute));
+        },
       ),
 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
