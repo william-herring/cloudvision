@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloudvision/main.dart';
+import 'package:cloudvision/screens/learn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -53,7 +54,7 @@ class CollectionScreen extends StatelessWidget {
   }
 
   void _navigateTo(int index, context) {
-    var navigationScreens = [HomeScreen(), CollectionScreen()];
+    var navigationScreens = [HomeScreen(), CollectionScreen(), LearnScreen()];
 
     Navigator.pushReplacement(
       context,

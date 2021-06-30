@@ -1,3 +1,4 @@
+import 'package:cloudvision/screens/learn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,6 +10,7 @@ class HomeScreen extends StatelessWidget {
   final routeNumbers = {
     0 : '/',
     1 : '/collections',
+    2 : '/learn'
   };
 
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   void _navigateTo(int index, context) {
-    var navigationScreens = [HomeScreen(), CollectionScreen()];
+    var navigationScreens = [HomeScreen(), CollectionScreen(), LearnScreen()];
 
     Navigator.pushReplacement(
       context,

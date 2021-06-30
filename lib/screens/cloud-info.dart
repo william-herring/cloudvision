@@ -49,12 +49,14 @@ class _CloudInfoScreenState extends State<CloudInfoScreen> {
 
                 Container(
                     padding: EdgeInsets.all(20.0),
-                    child: Text(_cloudData["fact"], textAlign: TextAlign.center,)
+                    child: Text(_cloudData["fact"], textAlign: TextAlign.center, style: GoogleFonts.quicksand())
                 ),
+
+                //Divider(thickness: 1.3),
 
                 Container(
                   padding: EdgeInsets.all(15.0),
-                  child: Text("Predictions: " + _cloudData["prediction"],)
+                  child: Text("Predictions: " + _cloudData["prediction"], style: GoogleFonts.quicksand(),)
                 ),
               ],
             )

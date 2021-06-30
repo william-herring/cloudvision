@@ -1,3 +1,5 @@
+import 'package:cloudvision/screens/learn.dart';
+
 import 'screens/camera.dart';
 import 'package:flutter/material.dart';
 import 'screens/home.dart';
@@ -38,6 +40,7 @@ class CloudvisionApp extends StatelessWidget {
         '/' : (context) => HomeScreen(),
         '/collections' : (context) => CollectionScreen(),
         '/camera' : (context) => CameraScreen(camera: cam),
+        '/learn' : (context) => LearnScreen(),
       }
     );
   }
