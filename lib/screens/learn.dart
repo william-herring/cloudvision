@@ -70,7 +70,42 @@ class LearnScreenContent extends StatefulWidget {
 class _LearnScreenContentState extends State<LearnScreenContent> {
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container()
+        body: Row(
+          children: [
+            bannerBox(Color(0xffff6060), "Learn your clouds: 5 resources for identifying clouds", true, () {})
+          ],
+        )
+    );
+  }
+
+  Widget bannerBox(Color color, String text, bool isTop, Function onTap) {
+    return GestureDetector(
+        onTap: onTap,
+
+        child: Container(
+          child: titleText(text),
+          alignment: Alignment.topLeft,
+          padding: EdgeInsets.fromLTRB(13.0, 10.0, 0.0, 90.0),
+          width: 312.0,
+          height: 200.0,
+          margin: EdgeInsets.fromLTRB(30.0, isTop ? 80.0 : 20.0, 30.0, 0.0),
+          decoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.all(Radius.circular(15.0)),
+            color: color,
+          ),
+        ));
+  }
+
+  Widget titleText(String text) {
+    return Text(
+      text,
+      //maxLines: 1,
+      style: GoogleFonts.quicksand(textStyle: TextStyle(
+        fontSize: 23.0,
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+      )),
     );
   }
 }
