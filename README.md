@@ -20,4 +20,4 @@ A huge thanks to Havard Dataverse's CCSN Database of cloud images that were used
 
 - Built on an iMac (27-inch, Late 2012)
 - Developed in IntelliJ IDEA CE (IDE) / Xcode (Deployment to iOS)
-- Application tested on and deployed on iPhone Xs.
+- Application tested and deployed on an iPhone Xs.
