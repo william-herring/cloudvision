@@ -1,19 +1,29 @@
-import 'package:cloudvision/main.dart';
-import 'package:cloudvision/screens/collections.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ArticleScreen extends StatefulWidget {
+  String title;
+  Widget body;
+
+  ArticleScreen(this.title, this.body);
+
   @override
-  _ArticleScreenState createState() => _ArticleScreenState();
+  _ArticleScreenState createState() => _ArticleScreenState(title, body);
 }
 
 class _ArticleScreenState extends State<ArticleScreen> {
+  String _title;
+  Widget _body;
+
+  _ArticleScreenState(this._title, this._body);
+
   Widget build(context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Article"),
+        title: Text(_title, style: GoogleFonts.quicksand(fontSize: 17.0, fontWeight: FontWeight.bold)),
       ),
+
+      body: _body,
     );
   }
 }

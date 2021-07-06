@@ -24,7 +24,8 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar (
         backgroundColor: Colors.blueGrey,
         selectedItemColor: Colors.white,
-        selectedLabelStyle: GoogleFonts.quicksand(),
+        selectedLabelStyle: GoogleFonts.quicksand(fontWeight: FontWeight.w800),
+        unselectedLabelStyle: GoogleFonts.quicksand(fontWeight: FontWeight.w800),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),

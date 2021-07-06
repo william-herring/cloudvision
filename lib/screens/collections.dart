@@ -27,7 +27,8 @@ class CollectionScreen extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar (
         backgroundColor: Colors.blueGrey,
         selectedItemColor: Colors.white,
-        selectedLabelStyle: GoogleFonts.quicksand(),
+        selectedLabelStyle: GoogleFonts.quicksand(fontWeight: FontWeight.w800),
+        unselectedLabelStyle: GoogleFonts.quicksand(fontWeight: FontWeight.w800),
         currentIndex: 1,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

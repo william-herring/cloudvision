@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:camera/camera.dart';
 import 'package:cloudvision/main.dart';
+import 'article-screen.dart';
 import 'collections.dart';
 import 'home.dart';
 
@@ -25,7 +26,8 @@ class LearnScreen extends StatelessWidget {
 
         backgroundColor: Colors.blueGrey,
         selectedItemColor: Colors.white,
-        selectedLabelStyle: GoogleFonts.quicksand(),
+        selectedLabelStyle: GoogleFonts.quicksand(fontWeight: FontWeight.w800),
+        unselectedLabelStyle: GoogleFonts.quicksand(fontWeight: FontWeight.w800),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
@@ -72,7 +74,11 @@ class _LearnScreenContentState extends State<LearnScreenContent> {
     return Scaffold(
         body: Row(
           children: [
-            bannerBox(Color(0xffff6060), "Learn your clouds: 5 resources for identifying clouds", true, () {})
+            bannerBox(Color(0xffff6060), "Learn your clouds: 5 resources for identifying clouds", true, () {
+              Navigator.push(context, PageRouteBuilder(
+                  pageBuilder: (context, animation1, animation2) => ArticleScreen("5 resources for identifying clouds", Container()),
+              ));
+            })
           ],
         )
     );

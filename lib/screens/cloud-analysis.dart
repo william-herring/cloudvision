@@ -45,7 +45,7 @@ class _CloudAnalysisScreenState extends State<CloudAnalysisScreen> {
       backgroundColor: Color(0xffffffff),
 
       appBar: AppBar(
-        title: Text(_name),
+        title: Text(_name, style: GoogleFonts.quicksand(fontWeight: FontWeight.bold),),
       ),
 
       body: Center(
