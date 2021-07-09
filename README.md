@@ -8,6 +8,9 @@ Cloudvision is an app designed for learning, collecting, scanning and analysing 
 - A cloud scanner that makes use of the device's camera and machine learning to output the cloud type.
 - A collection of learning resources about clouds and the creation of the application.
 
+![Cloudvision Advertisment](https://user-images.githubusercontent.com/73984595/125007976-d653b300-e0a4-11eb-828f-67f157e99e59.png)
+
+![Cloudvision Advertisment 1](https://user-images.githubusercontent.com/73984595/125007955-ccca4b00-e0a4-11eb-9d9c-b268e8dd1e28.png)
 
 **Technical info:**
 
