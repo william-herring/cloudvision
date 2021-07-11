@@ -33,6 +33,7 @@ dependencies:
   image: ^3.0.2
   google_fonts: ^2.0.0
   cupertino_icons: ^1.0.2
+  url_launcher: ^6.0.9
 
 dev_dependencies:
   flutter_test:
