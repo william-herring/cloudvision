@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:camera/camera.dart';
 import 'package:cloudvision/main.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'collections.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -92,7 +93,9 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
               showcaseBox(Color(0xFF4FA4CB), "Sample clouds", false),
             ]
         ),
-        bannerBox(Color(0xFF9A4D84), "How does this app work?", false, () {}),
+        bannerBox(Color(0xFF9A4D84), "View this app's GitHub repository", false, () {
+          launch("https://github.com/coding-cuber/cloudvision");
+        }),
       ],
     );
   }

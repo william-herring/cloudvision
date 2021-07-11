@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:camera/camera.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:cloudvision/main.dart';
 import 'article-screen.dart';
 import 'collections.dart';
@@ -74,9 +75,53 @@ class _LearnScreenContentState extends State<LearnScreenContent> {
     return Scaffold(
         body: Row(
           children: [
-            bannerBox(Color(0xffff6060), "Learn your clouds: 5 resources for identifying clouds", true, () {
+            bannerBox(Color(0xffff6060), "Learn your clouds: 5 resources for learning nephology", true, () {
               Navigator.push(context, PageRouteBuilder(
-                  pageBuilder: (context, animation1, animation2) => ArticleScreen("5 resources for identifying clouds", Container()),
+                  pageBuilder: (context, animation1, animation2) => ArticleScreen("5 resources for learning nephology", Column(
+                    children: [
+                      Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Text("Nephology is the study of clouds and their various patterns and formations, as well as the weather they produce."
+                            " Here, I share five resources for learning about this interesting branch of science.",
+                            style: GoogleFonts.quicksand(fontWeight: FontWeight.w500, fontSize: 17.0),
+                        ),
+                      ),
+
+                      Padding (
+                        padding: EdgeInsets.all(10.0),
+                        child: Text("List: ", style: GoogleFonts.quicksand(fontWeight: FontWeight.bold, fontSize: 30.0)),
+                      ),
+
+                      Padding (
+                        padding: EdgeInsets.all(10.0),
+                        child: Column (
+                          children: [
+                            InkWell(
+                              child: Text("Nephology: The Science of Clouds", style: GoogleFonts.quicksand(fontWeight: FontWeight.w400, fontSize: 20.0, color: Colors.blue)),
+                              onTap: () => launch("https://ysjournal.com/nephology-the-science-of-clouds/"),
+                            ),
+                            InkWell(
+                              child: Text("Cloud names and classifications", style: GoogleFonts.quicksand(fontWeight: FontWeight.w400, fontSize: 20.0, color: Colors.blue)),
+                              onTap: () => launch("https://www.metoffice.gov.uk/weather/learn-about/weather/types-of-weather/clouds/cloud-names-classifications"),
+                            ),
+                            InkWell(
+                              child: Text("Learning Zone: Clouds", style: GoogleFonts.quicksand(fontWeight: FontWeight.w400, fontSize: 20.0, color: Colors.blue)),
+                              onTap: () => launch("https://scied.ucar.edu/learning-zone/clouds"),
+                            ),
+                            InkWell(
+                              child: Text("SciJinks: Types of Clouds", style: GoogleFonts.quicksand(fontWeight: FontWeight.w400, fontSize: 20.0, color: Colors.blue)),
+                              onTap: () => launch("https://scijinks.gov/clouds/"),
+                            )
+                          ]
+                        )
+                      ),
+
+                      Padding (
+                        padding: EdgeInsets.all(10.0),
+                        child: Text("Article by William Herring", style: GoogleFonts.quicksand(fontWeight: FontWeight.w400, fontSize: 12.0)),
+                      ),
+                    ],
+                  )),
               ));
             })
           ],
