@@ -160,6 +160,7 @@ class _ListContentState extends State<ListContent> {
   }
 
   List<Widget> buildCloudTiles() {
+    print(savedCloudData);
     List<Widget> list = [];
 
     for (var i = 0; i < savedCloudData.length; i++) {

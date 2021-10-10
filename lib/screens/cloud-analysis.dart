@@ -82,6 +82,7 @@ class _CloudAnalysisScreenState extends State<CloudAnalysisScreen> {
             GestureDetector(
               onTap: () {
                 _cloudData.saveData();
+                updatePrefs();
 
                 Navigator.pushReplacement(
                   context,
@@ -200,5 +201,6 @@ class CloudData {
 
   void saveData() {
     savedCloudData.add(getDataMap());
+    //updatePrefs();
   }
 }
