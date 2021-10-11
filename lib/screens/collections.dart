@@ -175,9 +175,11 @@ class _ListContentState extends State<ListContent> {
         title: titleText(Color(0xFF212121), title),
         trailing: IconButton(icon: Icon(Icons.delete), onPressed: () {
           savedCloudData.removeAt(i);
+          print("deleted item");
 
           setState(() {
             tiles = buildCloudTiles();
+            updatePrefs();
           });
         },),
         onTap: () {
