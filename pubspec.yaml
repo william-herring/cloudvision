@@ -33,8 +33,15 @@ dependencies:
   image: ^3.0.2
   google_fonts: ^2.0.0
   cupertino_icons: ^1.0.2
+  flutter_launcher_icons: ^0.9.2
   url_launcher: ^6.0.9
   shared_preferences:
+
+flutter_icons:
+  image_path: "assets/icon.png"
+  android: true
+  remove_alpha_ios: true
+  ios: true
 
 dev_dependencies:
   flutter_test:
