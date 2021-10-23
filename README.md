@@ -1,5 +1,7 @@
 # cloudvision
 
+UPDATE: This project won a major bursary prize in the Computer Programs category!
+
 This app was developed for the Science Talent Search Victoria 2021.
 
 Cloudvision is an app designed for learning, collecting, scanning and analysing clouds. Features include:
