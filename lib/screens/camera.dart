@@ -65,6 +65,7 @@ class _CameraScreenState extends State<CameraScreen> {
       ),
 
       body: Column(
+
       children: [
         FutureBuilder<void>(
         future: _initializeControllerFuture,
@@ -78,7 +79,7 @@ class _CameraScreenState extends State<CameraScreen> {
         ),
         Container(
           margin: EdgeInsets.all(20.0),
-          
+
           child: CheckmarkButton(_initializeControllerFuture, _controller),
         ),
 
