@@ -1,6 +1,6 @@
 # cloudvision
 
-UPDATE: This project won a major bursary prize in the Computer Programs category!
+<pre>UPDATE: This project won a major bursary prize in the Computer Programs category!</pre>
 
 This app was developed for the Science Talent Search Victoria 2021.
 
