@@ -160,7 +160,6 @@ class _ListContentState extends State<ListContent> {
   }
 
   List<Widget> buildCloudTiles() {
-    print(savedCloudData);
     List<Widget> list = [];
 
     for (var i = 0; i < savedCloudData.length; i++) {
@@ -175,7 +174,6 @@ class _ListContentState extends State<ListContent> {
         title: titleText(Color(0xFF212121), title),
         trailing: IconButton(icon: Icon(Icons.delete), onPressed: () {
           savedCloudData.removeAt(i);
-          print("deleted item");
 
           setState(() {
             tiles = buildCloudTiles();
@@ -183,8 +181,6 @@ class _ListContentState extends State<ListContent> {
           });
         },),
         onTap: () {
-          print(savedCloudData[i]);
-
           Navigator.push(context,
             PageRouteBuilder(pageBuilder: (context, animation1, animation2) => CloudInfoScreen(savedCloudData[i], CollectionScreen()))
           );

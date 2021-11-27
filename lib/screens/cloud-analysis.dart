@@ -29,7 +29,6 @@ class _CloudAnalysisScreenState extends State<CloudAnalysisScreen> {
     super.initState();
 
     if (_modelResults == null) {
-      print("Error: Model output is null. Returning with uninitialized state");
       return;
     }
 
@@ -45,7 +44,8 @@ class _CloudAnalysisScreenState extends State<CloudAnalysisScreen> {
       backgroundColor: Color(0xffffffff),
 
       appBar: AppBar(
-        title: Text(_name, style: GoogleFonts.quicksand(fontWeight: FontWeight.bold),),
+        title: Text(_name, style: GoogleFonts.quicksand(fontWeight: FontWeight.bold, color: Colors.black)),
+        backgroundColor: Colors.white,
       ),
 
       body: Center(

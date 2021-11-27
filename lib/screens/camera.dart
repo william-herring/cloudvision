@@ -83,12 +83,16 @@ class _CameraScreenState extends State<CameraScreen> {
           child: CheckmarkButton(_initializeControllerFuture, _controller),
         ),
 
-        Container(
-          margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
+        Align(
+          alignment: FractionalOffset.bottomCenter,
 
-          child: Text(
-            "Point your device towards the sky.",
-            style: TextStyle(color: Colors.white, fontSize: 14),
+          child: Container(
+            //margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
+
+            child: Text(
+              "Point your device towards the sky.",
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            ),
           ),
         ),
       ]
@@ -127,7 +131,6 @@ class _CheckmarkButtonState extends State<CheckmarkButton> {
             await initControllerFuture;
 
             final image = await controller.takePicture();
-            print(image.path);
 
             _showAlert(image);
           }

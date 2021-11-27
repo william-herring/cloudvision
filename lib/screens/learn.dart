@@ -141,6 +141,14 @@ class _LearnScreenContentState extends State<LearnScreenContent> {
           height: 200.0,
           margin: EdgeInsets.fromLTRB(30.0, isTop ? 80.0 : 20.0, 30.0, 0.0),
           decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                colors: [
+                  color,
+                  Color.fromRGBO(color.red, color.green, color.blue, 0.7),
+                ]
+            ),
+
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.all(Radius.circular(15.0)),
             color: color,

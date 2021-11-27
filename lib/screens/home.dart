@@ -137,6 +137,14 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
               width: 300.0,
               margin: EdgeInsets.fromLTRB(0.0, isTop ? 80.0 : 20.0, 0.0, 0.0),
               decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    colors: [
+                      color,
+                      Color.fromRGBO(color.red, color.green, color.blue, 0.7),
+                    ]
+                ),
+
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.all(Radius.circular(15.0)),
                 color: color,
@@ -158,6 +166,13 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
           height: 150.0,
           margin: EdgeInsets.fromLTRB(isLeft ? 30.0 : 5.0, 20.0, isLeft ? 10.0 : 10.0, 8.0),
           decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                colors: [
+                  boxColor,
+                  Color.fromRGBO(boxColor.red, boxColor.green, boxColor.blue, 0.7),
+                ]
+            ),
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.all(Radius.circular(15.0)),
             color: boxColor,

@@ -47,8 +47,6 @@ void updatePrefs() {
     arr.add(s);
   }
 
-  print(arr);
-
   prefs.setStringList("savedClouds", arr);
 }
 
@@ -70,8 +68,6 @@ void setCloudData() {
       'prediction' : sl[3],
       'fact' : sl[4]
     };
-
-    print(data);
 
     savedCloudData.add(data);
   }
