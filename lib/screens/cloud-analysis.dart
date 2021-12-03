@@ -6,9 +6,8 @@ import 'package:cloudvision/screens/camera.dart';
 import 'package:cloudvision/screens/collections.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:geolocator/geolocator.dart';
+
 import 'cloud-info.dart';
-import 'package:geocoding/geocoding.dart';
 
 class CloudAnalysisScreen extends StatefulWidget {
   var modelResults;
@@ -146,8 +145,6 @@ class CloudData {
   File image;
   var accuracy;
   var predictionMessage;
-  Position _currentPosition;
-  String _currentAddress;
 
   CloudData(this.speciesName, this.image, this.accuracy);
 
@@ -193,6 +190,18 @@ class CloudData {
     return accuracy;
   }
 
+  Map getDataMap() {
+    var data = {
+      'img' : image.path,
+      'title' : speciesName,
+      'accuracy' : getAccuracy(),
+      'prediction' : getPredictions(),
+      'fact' : getFacts(),
+    };
+
+    return data;
+  }
+
   bool checkForExistingData() {
     if (savedCloudData.contains(getDataMap())) {
       return true;
@@ -204,47 +213,5 @@ class CloudData {
   void saveData() {
     savedCloudData.add(getDataMap());
     //updatePrefs();
-  }
-
-  Map getDataMap() {
-    getLocation();
-    getAddressFromCoordinates();
-
-    var data = {
-      'img' : image.path,
-      'title' : speciesName,
-      'accuracy' : getAccuracy(),
-      'prediction' : getPredictions(),
-      'fact' : getFacts(),
-      'location' : _currentAddress,
-    };
-
-    return data;
-  }
-
-  getLocation() async {
-    Geolocator
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best, forceAndroidLocationManager: true)
-        .then((Position position) {
-      _currentPosition = position;
-      print(position);
-    }).catchError((e) {
-      print(e);
-    });
-  }
-
-  getAddressFromCoordinates() async {
-    try {
-      List<Placemark> placemarks = await placemarkFromCoordinates(
-          _currentPosition.latitude,
-          _currentPosition.longitude
-      );
-
-      Placemark place = placemarks[0];
-
-      _currentAddress = "${place.locality}, ${place.postalCode}, ${place.country}";
-    } catch (e) {
-      print(e);
-    }
   }
 }

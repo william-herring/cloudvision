@@ -20,7 +20,11 @@ class _ArticleScreenState extends State<ArticleScreen> {
   Widget build(context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_title, style: GoogleFonts.quicksand(fontSize: 17.0, fontWeight: FontWeight.bold)),
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.white,
+        title: Text(_title, style: GoogleFonts.quicksand(fontSize: 17.0, fontWeight: FontWeight.bold, color: Colors.black)),
       ),
 
       body: _body,
