@@ -1,4 +1,6 @@
-﻿import 'package:cloudvision/screens/cloud-analysis.dart';
+﻿import 'package:cloudvision/main.dart';
+import 'package:cloudvision/screens/cloud-analysis.dart';
+import 'package:cloudvision/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/services.dart';
@@ -62,6 +64,17 @@ class _CameraScreenState extends State<CameraScreen> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         iconTheme: IconThemeData(color: Colors.white),
+        automaticallyImplyLeading: false,
+
+        leading: IconButton(
+          icon: Icon(Icons.close, color: Colors.white, size: 30),
+          onPressed: () {
+            Navigator.push(
+                context,
+                PageRouteBuilder(pageBuilder: (context, animation1, animation2) => HomeScreen())
+            );
+          },
+        ),
       ),
 
       body: Column(
@@ -71,28 +84,45 @@ class _CameraScreenState extends State<CameraScreen> {
         future: _initializeControllerFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return CameraPreview(_controller);
+            var size = MediaQuery.of(context).size.width;
+
+            return Container(
+              width: size,
+              height: 500,
+              child: ClipRect(
+                child: OverflowBox(
+                  alignment: Alignment.center,
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Container(
+                      width: size,
+                      child: CameraPreview(_controller), // this is my CameraPreview
+                    ),
+                  ),
+                ),
+              ),
+            );
           } else {
             return Center(child: CircularProgressIndicator());
           }
         },
         ),
-        Container(
-          margin: EdgeInsets.all(20.0),
-
-          child: CheckmarkButton(_initializeControllerFuture, _controller),
-        ),
 
         Align(
           alignment: FractionalOffset.bottomCenter,
 
-          child: Container(
-            //margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
+          child: Column(
+            children: [
+              CheckmarkButton(_initializeControllerFuture, _controller),
+              Container(
+                //margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
 
-            child: Text(
-              "Point your device towards the sky.",
-              style: TextStyle(color: Colors.white, fontSize: 14),
-            ),
+                child: Text(
+                  "Point your device towards the sky.",
+                  style: TextStyle(color: Colors.white, fontSize: 14),
+                ),
+              ),
+            ],
           ),
         ),
       ]
@@ -229,14 +259,18 @@ class _AnalysisPopupState extends State<AnalysisPopup> {
                   },
                   child: Text("See the results", style: GoogleFonts.quicksand(fontWeight: FontWeight.bold, color: Colors.blueAccent)),
               ) : Container(),
-              margin: EdgeInsets.all(11.0),
             ),
           ],
         ),
         
         actions: [
           TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    PageRouteBuilder(pageBuilder: (context, animation1, animation2) => CameraScreen(camera: cam))
+                );
+              },
               child: Text("Cancel", style: GoogleFonts.quicksand(color: Colors.blueGrey, fontWeight: FontWeight.w800))
           )
         ],

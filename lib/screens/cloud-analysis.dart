@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 import 'package:cloudvision/main.dart';
+import 'package:cloudvision/screens/camera.dart';
 import 'package:cloudvision/screens/collections.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -44,8 +45,18 @@ class _CloudAnalysisScreenState extends State<CloudAnalysisScreen> {
       backgroundColor: Color(0xffffffff),
 
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(_name, style: GoogleFonts.quicksand(fontWeight: FontWeight.bold, color: Colors.black)),
         backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: Icon(Icons.close, color: Colors.black, size: 30),
+          onPressed: () {
+            Navigator.pushReplacement(
+                context,
+                PageRouteBuilder(pageBuilder: (context, animation1, animation2) => CameraScreen(camera: cam))
+            );
+          },
+        ),
       ),
 
       body: Center(
