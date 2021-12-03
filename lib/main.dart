@@ -14,6 +14,7 @@ var savedCloudData = [];
 var prefs;
 
 Future<void> main() async {
+  print(savedCloudData);
   WidgetsFlutterBinding.ensureInitialized();
 
   final cameras = await availableCameras();
@@ -37,6 +38,7 @@ void updatePrefs() {
       d['accuracy'].toString(),
       d['prediction'].toString(),
       d['fact'].toString(),
+      d['location'].toString()
     ];
 
     String s = "";
@@ -66,7 +68,8 @@ void setCloudData() {
       'title' : sl[1],
       'accuracy' : sl[2],
       'prediction' : sl[3],
-      'fact' : sl[4]
+      'fact' : sl[4],
+      'location': sl[5]
     };
 
     savedCloudData.add(data);

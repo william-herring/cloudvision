@@ -165,12 +165,13 @@ class _ListContentState extends State<ListContent> {
     for (var i = 0; i < savedCloudData.length; i++) {
       String title = savedCloudData[i]["title"];
       String accuracy = savedCloudData[i]["accuracy"];
+      String location = savedCloudData[i]["location"];
       Image img = Image.file(File(savedCloudData[i]["img"]));
 
       ListTile tile = ListTile(
         contentPadding: EdgeInsets.all(12.5),
         leading: img,
-        subtitle: Text("Photo taken by you. Accuracy: " + accuracy + "%"),
+        subtitle: Text("Photo taken by you. Accuracy: " + accuracy + "%." + "Location: $location"),
         title: titleText(Color(0xFF212121), title),
         trailing: IconButton(icon: Icon(Icons.delete), onPressed: () {
           savedCloudData.removeAt(i);
