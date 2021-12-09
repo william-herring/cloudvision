@@ -14,6 +14,9 @@ Cloudvision is an app designed for learning, collecting, scanning and analysing 
 
 ![Cloudvision Advertisment 1](https://user-images.githubusercontent.com/73984595/125007955-ccca4b00-e0a4-11eb-9d9c-b268e8dd1e28.png)
 
+**Installation:**
+Install via App Store (iOS): https://apps.apple.com/au/app/cloudvision/id1597605747
+
 **Technical info:**
 
 Cloudvision was built using the Flutter framework. All front-end code is written in Dart. 
